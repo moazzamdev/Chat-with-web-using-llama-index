@@ -5,10 +5,6 @@ from langchain.agents import initialize_agent, Tool
 from langchain.llms import OpenAI
 from langchain.chains.conversation.memory import ConversationBufferMemory
 from streamlit_chat import message
-import panel as pn
-from panel.chat import ChatInterface
-
-pn.extension("vega")
 
 def myApp():
     # Download SimpleWebPageReader
@@ -61,26 +57,8 @@ def myApp():
 
         except Exception as e:
             st.error(f"An error occurred: {e}")
-        ChatInterface(
-            callback=even_or_odd,
-            user="Asker",
-            avatar="?",
-            callback_user="Counter",
-        )
-        ChatMessage(
-            "Want to hear some beat boxing?",
-            user="Beat Boxer",
-            avatar="🎶",
-            height=250,
-            sizing_mode="stretch_width",
-            max_width=600,
-            styles={"background": "#CBC3E3"},
-        )
 
-        def callback(contents, user, instance):
-            callback_handler = pn.chat.langchain.PanelCallbackHandler(instance)
-            return agent.run(contents, callbacks=[callback_handler])
 
-        pn.chat.ChatInterface(callback=callback).servable()
+
 if __name__ == "__main__":
     myApp()
