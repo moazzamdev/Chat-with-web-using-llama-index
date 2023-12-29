@@ -58,7 +58,3 @@ def myApp():
         except Exception as e:
             st.error(f"An error occurred: {e}")
 
-
-
-if __name__ == "__main__":
-    myApp()
